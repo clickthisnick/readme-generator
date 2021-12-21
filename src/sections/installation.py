@@ -1,4 +1,5 @@
+# -*- coding: utf-8 -*-
 def generate():
     return """```
-TODO install 
+TODO install
 ```"""

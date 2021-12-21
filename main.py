@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 from os import listdir
 from os.path import isfile, join
@@ -27,6 +28,7 @@ CONSTANTS = {
     "section_value_end": "<!-- SECTION END ---->",
 }
 
+
 def files_to_description(filename: str) -> str:
     map = {
         "readme.md": "A markdown readme file which contains useful information.",
@@ -39,6 +41,7 @@ def files_to_description(filename: str) -> str:
 
     return ""
 
+
 def read_current_readme():
     with open("README.md", encoding="utf-8") as f:
         contents = f.read()
@@ -48,20 +51,29 @@ def read_current_readme():
     section_json = {}
 
     for section in sections[1:]:
-        section_name = section.split(CONSTANTS["section_end"])[0].replace("#", "").strip()
-        section_value = section.split(CONSTANTS["section_end"])[1].split(CONSTANTS["section_value_end"])[0].strip()
+        section_name = (
+            section.split(CONSTANTS["section_end"])[0].replace("#", "").strip()
+        )
+        section_value = (
+            section.split(CONSTANTS["section_end"])[1]
+            .split(CONSTANTS["section_value_end"])[0]
+            .strip()
+        )
         section_json[section_name] = section_value
 
     return section_json
+
 
 def read_config():
     with open(".github/README_CONFIG.json", encoding="utf-8") as file:
         config = json.loads(file.read())
     return config
 
+
 def write(contents: str) -> None:
     with open("README_generated.md", "w", encoding="utf-8") as readme:
         readme.write(contents)
+
 
 def generate_file_directory_structure(path: str) -> str:
     file_contents = ""
@@ -69,10 +81,6 @@ def generate_file_directory_structure(path: str) -> str:
     for f in listdir(path):
         if isfile(join(path, f)):
             return files_to_description(f)
-            continue
-    pass
-
-def generate_table_of_contents():
     pass
 
 def main(args):
@@ -130,9 +138,9 @@ def main(args):
     for section_name, section_value in sections.items():
         markdown += CONSTANTS["section_start"]
         markdown += util.new_line(2)
-        markdown += f'## {section_name}'
+        markdown += f"## {section_name}"
         markdown += util.new_line(2)
-        markdown += '<hr>'
+        markdown += "<hr>"
         markdown += util.new_line(2)
         markdown += CONSTANTS["section_end"]
         markdown += util.new_line(1)
@@ -145,23 +153,24 @@ def main(args):
 
     write(markdown)
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Process the command line.')
 
-    parser.add_argument('--skip-installation', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-usage', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-examples', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-documentation', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-features', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-root-items', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-built-with', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-roadmap', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-deploying', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-faqs', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-contributing', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-support', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-testing', action=argparse.BooleanOptionalAction)
-    parser.add_argument('--skip-configuration', action=argparse.BooleanOptionalAction)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Process the command line.")
+
+    parser.add_argument("--skip-installation", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-usage", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-examples", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-documentation", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-features", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-root-items", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-built-with", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-roadmap", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-deploying", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-faqs", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-contributing", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-support", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-testing", action=argparse.BooleanOptionalAction)
+    parser.add_argument("--skip-configuration", action=argparse.BooleanOptionalAction)
     parser.add_argument("--path", required=True, type=str)
 
     args = parser.parse_args()

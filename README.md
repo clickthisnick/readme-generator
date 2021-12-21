@@ -25,7 +25,7 @@
 
 <!-- SECTION TITLE END ---->
 ```
-TODO install 
+TODO install
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -211,4 +211,3 @@ If you have a suggestion that would make this better, please first create a gith
 TODO
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-

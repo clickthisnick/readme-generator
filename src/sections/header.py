@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def generate(sections):
     html = ""
 
@@ -8,7 +9,7 @@ def generate(sections):
         if i < max_i - 1:
             html += " • "
 
-    return f'''<h1 align="center">
+    return f"""<h1 align="center">
   <br>
   <a href="http://www.example.com"><img src="https://foo.png" alt="TODO" width="200"></a>
   <br>
@@ -24,4 +25,4 @@ def generate(sections):
 
 <p align="center">
   {html}
-</p>'''
+</p>"""

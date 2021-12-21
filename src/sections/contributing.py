@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def generate():
     markdown = """
 Any contributions you make are **greatly appreciated**.

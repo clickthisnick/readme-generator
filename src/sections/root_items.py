@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from src import util
 
@@ -10,7 +11,10 @@ DEFAULT_VALUE_MAP = {
     "readme.md": "The readme file which says various information about the repository.",
     "tox.ini": "The configuration file for [tox](https://tox.wiki/en/latest/index.html), which is a tool that managed python virutal envs and runs python commands within those virtual envs.",
     "dockerfile": "The instructions used to build a [docker](https://docs.docker.com/) image.",
+    ".dockerignore": "Lists the files and directories which will be ignored when building a [docker](https://docs.docker.com/) image",
+    ".pre-commit-config.yaml": "The configuration for the [pre-commit](https://pre-commit.com/) check. Which runs checks on every commit.",
 }
+
 
 def generate(target_path):
     markdown = ""
@@ -18,12 +22,14 @@ def generate(target_path):
     items = os.listdir(target_path)
     items.sort()
 
-    max_i = len(items)
-
-    for i, item in enumerate(items):
+    for item in items:
         path = os.path.join(target_path, item)
 
-        value = DEFAULT_VALUE_MAP[item.lower()] if item.lower() in DEFAULT_VALUE_MAP else "TODO"
+        value = (
+            DEFAULT_VALUE_MAP[item.lower()]
+            if item.lower() in DEFAULT_VALUE_MAP
+            else "TODO"
+        )
 
         markdown += util.new_line(2)
         markdown += f"### {item} "
@@ -34,16 +40,16 @@ def generate(target_path):
             markdown += FILE_EMOJI
         else:
             raise ValueError(f"{path} is not a file nor a directory.")
-        
+
         markdown += util.new_line(2)
         markdown += value
         markdown += "<hr>"
 
     if markdown:
-        markdown = f'''<details>
+        markdown = f"""<details>
 <summary>Click to expand, to see infromation about the files/directories in the root of this repo!</summary>
 <hr>
 {markdown}
-</details>'''
+</details>"""
 
     return markdown
