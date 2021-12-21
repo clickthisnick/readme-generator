@@ -12,6 +12,8 @@ import src.sections.usage as usage
 import src.sections.root_items as root_items
 import src.sections.deploying as deploying
 import src.sections.built_with as built_with
+import src.sections.testing as testing
+import src.sections.configuration as configuration
 import src.sections.faqs as faqs
 import src.sections.roadmap as roadmap
 import src.sections.header as header
@@ -96,6 +98,15 @@ def main(args):
     if args.skip_features is None:
         sections["Features"] = features.generate()
 
+    if args.skip_configuration is None:
+        sections["Configuration"] = configuration.generate()
+
+    if args.skip_testing is None:
+        sections["Testing"] = testing.generate()
+
+    if args.skip_deploying is None:
+        sections["Deploying"] = deploying.generate()
+
     if args.skip_root_items is None:
         sections["Root Items"] = root_items.generate(args.path)
 
@@ -104,9 +115,6 @@ def main(args):
 
     if args.skip_roadmap is None:
         sections["Roadmap"] = roadmap.generate()
-
-    if args.skip_deploying is None:
-        sections["Deploying"] = deploying.generate()
 
     if args.skip_faqs is None:
         sections["FAQs"] = faqs.generate()
@@ -152,6 +160,8 @@ if __name__ == "__main__":
     parser.add_argument('--skip-faqs', action=argparse.BooleanOptionalAction)
     parser.add_argument('--skip-contributing', action=argparse.BooleanOptionalAction)
     parser.add_argument('--skip-support', action=argparse.BooleanOptionalAction)
+    parser.add_argument('--skip-testing', action=argparse.BooleanOptionalAction)
+    parser.add_argument('--skip-configuration', action=argparse.BooleanOptionalAction)
     parser.add_argument("--path", required=True, type=str)
 
     args = parser.parse_args()

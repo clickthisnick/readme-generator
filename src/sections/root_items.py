@@ -8,6 +8,8 @@ DEFAULT_VALUE_MAP = {
     ".git": "The folder that git uses to track all the git files. You should not edit this directly.",
     ".gitignore": "The file which tells git the files to ignore. Ignored files will not be tracking and committed.",
     "readme.md": "The readme file which says various information about the repository.",
+    "tox.ini": "The configuration file for [tox](https://tox.wiki/en/latest/index.html), which is a tool that managed python virutal envs and runs python commands within those virtual envs.",
+    "dockerfile": "The instructions used to build a [docker](https://docs.docker.com/) image.",
 }
 
 def generate(target_path):
@@ -39,7 +41,7 @@ def generate(target_path):
 
     if markdown:
         markdown = f'''<details>
-<summary>Click to expand!</summary>
+<summary>Click to expand, to see infromation about the files/directories in the root of this repo!</summary>
 <hr>
 {markdown}
 </details>'''
