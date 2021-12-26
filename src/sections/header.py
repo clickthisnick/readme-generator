@@ -13,11 +13,11 @@ def generate(sections):
   <br>
   <a href="http://www.example.com"><img src="https://foo.png" alt="TODO" width="200"></a>
   <br>
-  TODO
+  TODO - Title
   <br>
 </h1>
 
-<h4 align="center">TODO - Title.</h4>
+<h4 align="center">TODO - Description.</h4>
 
 <p align="center">
     TODO BADGES

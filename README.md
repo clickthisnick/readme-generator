@@ -1,191 +1,230 @@
 <div id="top"></div>
 
 <h1 align="center">
-  <br>
+  <!-- <br>
   <a href="http://www.example.com"><img src="https://foo.png" alt="TODO" width="200"></a>
-  <br>
-  TODO
+  <br> -->
+  Readme Generator
   <br>
 </h1>
 
-<h4 align="center">TODO - Title.</h4>
+<h4 align="center">Generates a readable readme, based on examples found on https://github.com/matiassingers/awesome-readme</h4>
 
-<p align="center">
+<!-- <p align="center">
     TODO BADGES
-    https://shields.io/category/other
-</p>
+</p> -->
 
 <p align="center">
-  <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#examples">Examples</a> • <a href="#documentation">Documentation</a> • <a href="#features">Features</a> • <a href="#root-items">Root Items</a> • <a href="#built-with">Built With</a> • <a href="#roadmap">Roadmap</a> • <a href="#deploying">Deploying</a> • <a href="#faqs">FAQs</a> • <a href="#contributing">Contributing</a> • <a href="#support">Support</a>
+  <a href="#installation">Installation</a> • <a href="#usage">Usage</a> • <a href="#examples">Examples</a> • <a href="#documentation">Documentation</a> • <a href="#features">Features</a> • <a href="#configuration">Configuration</a> • <a href="#testing">Testing</a> • <a href="#deploying">Deploying</a> • <a href="#monitoring">Monitoring</a> • <a href="#root-items">Root Items</a> • <a href="#built-with">Built With</a> • <a href="#roadmap">Roadmap</a> • <a href="#faqs">FAQs</a> • <a href="#contributing">Contributing</a> • <a href="#support">Support</a>
 </p><!-- SECTION TITLE START ---->
+
+<hr>
 
 ## Installation
 
-<hr>
-
 <!-- SECTION TITLE END ---->
 ```
-TODO install
+Just download the code from githib. Not pushed to pypi.
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
+
+<hr>
 
 ## Usage
 
-<hr>
-
 <!-- SECTION TITLE END ---->
+`python3 main.py --help`
 ```
-Usage: foo.py [OPTIONS]
+Process the command line options.
 
-    Does a thing
-
-Options:
-  -help, -h  Show this message and exit.
+optional arguments:
+  -h, --help            show this help message and exit
+  --skip-installation, --no-skip-installation
+  --skip-usage, --no-skip-usage
+  --skip-examples, --no-skip-examples
+  --skip-documentation, --no-skip-documentation
+  --skip-features, --no-skip-features
+  --skip-root-items, --no-skip-root-items
+  --skip-built-with, --no-skip-built-with
+  --skip-roadmap, --no-skip-roadmap
+  --skip-deploying, --no-skip-deploying
+  --skip-faqs, --no-skip-faqs
+  --skip-contributing, --no-skip-contributing
+  --skip-support, --no-skip-support
+  --skip-testing, --no-skip-testing
+  --skip-configuration, --no-skip-configuration
+  --skip-monitoring, --no-skip-monitoring
+  --path PATH           The path to the root directory
+                        where you want to generate the
+                        readme. The readme will be a new
+                        file called `README_generated.md`
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
+
+<hr>
 
 ## Examples
 
-<hr>
-
 <!-- SECTION TITLE END ---->
-TODO
+
+To generate the readme for this repo: `python3 main.py --path .`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
+
+<hr>
 
 ## Documentation
 
-<hr>
-
 <!-- SECTION TITLE END ---->
-[TODO](http://todo.com)
-[TODO2](http://todo.com)
-[TODO3](http://todo.com)
+No extra docs provided.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
+
+<hr>
 
 ## Features
 
-<hr>
-
 <!-- SECTION TITLE END ---->
 
-* TODO
-* TODO 2
-* [TODO 3]()
+* Generates a readme with headers and all the root files/directories
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
 
-## Root Items
+<hr>
+
+## Configuration
+
+<!-- SECTION TITLE END ---->
+No explicit configuration aside from command line arguments as seen in <a href="#usage">usage</a>.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- SECTION TITLE START ---->
 
 <hr>
+
+## Testing
+
+<!-- SECTION TITLE END ---->
+No tests as of yet.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- SECTION TITLE START ---->
+
+<hr>
+
+## Deploying
+
+<!-- SECTION TITLE END ---->
+No deploying.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- SECTION TITLE START ---->
+
+<hr>
+
+## Monitoring
+
+<!-- SECTION TITLE END ---->
+Nothing to monitor.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- SECTION TITLE START ---->
+
+<hr>
+
+## Root Items
 
 <!-- SECTION TITLE END ---->
 <details>
-<summary>Click to expand, to see infromation about the files/directories in the root of this repo!</summary>
+<summary>Click to expand, to see information about the files/directories in the root of this repo!</summary>
 <hr>
-
-
-### .git :file_folder:
-
-The folder that git uses to track all the git files. You should not edit this directly.<hr>
 
 ### .gitignore :page_facing_up:
 
-The file which tells git the files to ignore. Ignored files will not be tracking and committed.<hr>
+The file which tells [git](https://git-scm.com/doc) the files to ignore. Ignored files will not be tracking and committed.<hr>
+
+### .pre-commit-config.yaml :page_facing_up:
+
+The configuration for the [pre-commit](https://pre-commit.com/) check. Which runs checks on every commit.<hr>
 
 ### LICENSE :page_facing_up:
 
-TODO<hr>
+The license for the project.<hr>
 
 ### README.md :page_facing_up:
 
 The readme file which says various information about the repository.<hr>
 
-### README_generated.md :page_facing_up:
-
-TODO<hr>
-
 ### main.py :page_facing_up:
 
-TODO<hr>
+The main script to invoke with python.<hr>
 
 ### src :file_folder:
 
-TODO<hr>
-
-### tests :file_folder:
-
-TODO<hr>
+The directory which contains the source code.<hr>
 </details>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
 
-## Built With
-
 <hr>
 
+## Built With
+
 <!-- SECTION TITLE END ---->
-[TODO 1](http://todo.com)
-
-[TODO 2](http://todo.com)
-
-[TODO 3](http://todo.com)
+Python
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
+
+<hr>
 
 ## Roadmap
 
-<hr>
-
 <!-- SECTION TITLE END ---->
-TODO
+
+* Use previously generated readme as input (To make root-files and other sections more up to date.)
+* Skip items or have a section for .gitignored items
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
 
-## Deploying
-
 <hr>
-
-<!-- SECTION TITLE END ---->
-TODO
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- SECTION TITLE START ---->
 
 ## FAQs
 
-<hr>
-
 <!-- SECTION TITLE END ---->
-TODO
+
+None, ask some questions via github issues and I can add to this sections.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- SECTION TITLE START ---->
 
-## Contributing
-
 <hr>
+
+## Contributing
 
 <!-- SECTION TITLE END ---->
 
@@ -203,11 +242,12 @@ If you have a suggestion that would make this better, please first create a gith
 
 <!-- SECTION TITLE START ---->
 
-## Support
-
 <hr>
 
+## Support
+
 <!-- SECTION TITLE END ---->
-TODO
+
+Support is at best, no explicit support is provided.
 
 <p align="right">(<a href="#top">back to top</a>)</p>

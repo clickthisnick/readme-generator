@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-import json
-from os import listdir
-from os.path import isfile, join
 import argparse
+import os
 
 import src.sections.contributing as contributing
 import src.sections.installation as installation
@@ -19,6 +17,7 @@ import src.sections.faqs as faqs
 import src.sections.roadmap as roadmap
 import src.sections.header as header
 import src.sections.support as support
+import src.sections.monitoring as monitoring
 
 import src.util as util
 
@@ -27,19 +26,6 @@ CONSTANTS = {
     "section_end": "<!-- SECTION TITLE END ---->",
     "section_value_end": "<!-- SECTION END ---->",
 }
-
-
-def files_to_description(filename: str) -> str:
-    map = {
-        "readme.md": "A markdown readme file which contains useful information.",
-        "dockerfile": "Instructions on how to build a docker image.",
-    }
-
-    filename_lower = filename.lower()
-    if filename_lower in map:
-        return map[filename_lower]
-
-    return ""
 
 
 def read_current_readme():
@@ -64,27 +50,14 @@ def read_current_readme():
     return section_json
 
 
-def read_config():
-    with open(".github/README_CONFIG.json", encoding="utf-8") as file:
-        config = json.loads(file.read())
-    return config
-
-
-def write(contents: str) -> None:
-    with open("README_generated.md", "w", encoding="utf-8") as readme:
+def write(path: str, contents: str) -> None:
+    path = os.path.join(path, "README_generated.md")
+    with open(path, "w", encoding="utf-8") as readme:
         readme.write(contents)
 
 
-def generate_file_directory_structure(path: str) -> str:
-    file_contents = ""
-
-    for f in listdir(path):
-        if isfile(join(path, f)):
-            return files_to_description(f)
-    pass
-
 def main(args):
-    current_readme = read_current_readme()
+    # current_readme = read_current_readme()
 
     markdown = '<div id="top"></div>'
     markdown += util.new_line(2)
@@ -115,6 +88,9 @@ def main(args):
     if args.skip_deploying is None:
         sections["Deploying"] = deploying.generate()
 
+    if args.skip_monitoring is None:
+        sections["Monitoring"] = monitoring.generate()
+
     if args.skip_root_items is None:
         sections["Root Items"] = root_items.generate(args.path)
 
@@ -138,9 +114,9 @@ def main(args):
     for section_name, section_value in sections.items():
         markdown += CONSTANTS["section_start"]
         markdown += util.new_line(2)
-        markdown += f"## {section_name}"
-        markdown += util.new_line(2)
         markdown += "<hr>"
+        markdown += util.new_line(2)
+        markdown += f"## {section_name}"
         markdown += util.new_line(2)
         markdown += CONSTANTS["section_end"]
         markdown += util.new_line(1)
@@ -151,27 +127,39 @@ def main(args):
         markdown += '<p align="right">(<a href="#top">back to top</a>)</p>'
         markdown += util.new_line(2)
 
-    write(markdown)
+    write(args.path, markdown)
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process the command line.")
+    parser = argparse.ArgumentParser(description="Process the command line options.")
 
-    parser.add_argument("--skip-installation", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-usage", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-examples", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-documentation", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-features", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-root-items", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-built-with", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-roadmap", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-deploying", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-faqs", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-contributing", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-support", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-testing", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--skip-configuration", action=argparse.BooleanOptionalAction)
-    parser.add_argument("--path", required=True, type=str)
+    sections = [
+        "installation",
+        "usage",
+        "examples",
+        "documentation",
+        "features",
+        "root-items",
+        "built-with",
+        "roadmap",
+        "deploying",
+        "faqs",
+        "contributing",
+        "support",
+        "testing",
+        "configuration",
+        "monitoring",
+    ]
+
+    for section in sections:
+        parser.add_argument(f"--skip-{section}", action=argparse.BooleanOptionalAction)
+
+    parser.add_argument(
+        "--path",
+        required=True,
+        type=str,
+        help="The path to the root directory where you want to generate the readme. The readme will be a new file called `README_generated.md`",
+    )
 
     args = parser.parse_args()
     main(args)
