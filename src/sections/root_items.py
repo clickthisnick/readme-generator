@@ -15,9 +15,19 @@ DEFAULT_VALUE_MAP = {
     ".pre-commit-config.yaml": "The configuration for the [pre-commit](https://pre-commit.com/) check. Which runs checks on every commit.",
     ".pylintrc": "The configuration for [pylint](https://pylint.pycqa.org/en/latest/). Which is a python code linter.",
     "pytest.ini": "The configuration for [pytest](https://docs.pytest.org/en/6.2.x/contents.html). Which is a python test framework.",
+    ".coveragerc": "The configuration for the [coverage](https://coverage.readthedocs.io/en/latest/config.html) tool. It can be used to assert code coverage from tests must be at least a certain level.",
+    ".github": "The directory which contains various [github files](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories), such as what markdown you would see when creating a pull request",
+    ".vscode": "The directory which contains various [visual studio](https://docs.microsoft.com/en-us/visualstudio) configuration files.",
+    "Jenkinsfile": "The instructions for what commands will run in the [Jenkins](https://www.jenkins.io/doc/) continuous integration environment.",
+    "docker-compose.yml": "The instructions that [docker-compose](https://docs.docker.com/compose/) uses to run docker images as containers.",
+    "pyproject.toml": "A standard python project setup [file](https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/).",
+    "requirements.txt": "A production python requirements file, used to list dependencies for production.",
+    "requirements-dev.txt": "A development python requirements file, used to list dependencies for the development environment.",
+    "setup.py": "A standard python project setup file. Possibly replaced by pyproject.toml",
 }
 
 skip = {".git"}
+
 
 def generate(target_path):
     markdown = ""
